@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Blood Monitoring System</title>
+</head>
+ <style> 
+
+table, td, th { 
+ border: 1px solid #ddd; 
+ text-align: left; 
+} 
+table { 
+ border-collapse: collapse; 
+ width: 50%; 
+background-color: #008B8B;
+} 
+.table-data{ 
+ position: relative; 
+ left:150px; 
+ top:100px; 
+} 
+th, td { 
+ padding: 15px; 
+} 
+</style>
+
+<body>
+    <div class="table-data">
+<h2>Blood Monitoring System</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Systolic</th>
+            <th>Diastolic</th>
+            <th>Pulse</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        
+        <%
+      
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+         
+            <td><%=data.ID %></td>
+            <td><%=data.Systolic %></td>
+            <td><%=data.Diastolic %></td>
+            <td><%=data.Pulse %></td>
+            <td><%=data.Time %></td>
+            <td><a href="/Person/edit/<%=data.ID%>">Edit</a></td>
+            <td><a href="/Person/delete/<%=data.ID%>">Delete</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

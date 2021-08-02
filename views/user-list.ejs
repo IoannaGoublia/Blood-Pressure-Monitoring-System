@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<title>BPMS</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+<link rel="stylesheet" href="http://../node_modules/chart.js/dist/Chart.js">
+
+
+
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: LightGray;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+yolo1,yolo2,yolo3,yolo4,yolo5 { display: flex;
+        
+      margin-left:120px;
+      width:200px;}
+table, td, th { 
+ border: 1px solid #ddd; 
+ text-align: left; 
+} 
+table { 
+ border-collapse: collapse; 
+ width: 50%; 
+background-color: LightBlue;
+} 
+.table-data{ 
+ position: relative; 
+ left:150px; 
+ top:100px; 
+} 
+th, td { 
+ padding: 15px; 
+} 
+
+
+
+</style>
+
+
+
+
+<body class="yolo" style="color:#333399" >
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+   
+  
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>Home</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black" >
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>History</p>
+  </a>
+   <a href="#alerts" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Alerts</p>
+  </a>
+ <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>Info</p>
+  </a>
+   <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Chart</p>
+  </a>
+  
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">Home</a>
+    <a href="#realtime" class="w3-bar-item w3-button" style="width:25% !important">History</a>
+     <a href="#alerts" class="w3-bar-item w3-button" style="width:25% !important">Alerts</a>
+    
+    <a href="#history" class="w3-bar-item w3-button" style="width:25% !important">Info</a>
+      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">Chart</a>
+    
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="yolo1" style="width:25% height:150px margin-left: 120px  padding:40px"
+  >
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center "style="background-color:LightGray" id="home" >
+    <h3 class="w3-jumbo" style="color:DodgerBlue"><span class="w3-hide-small"></span>Blood Pressure Monitoring System</h3>
+     <h5 class="w3-jumbo" style="color:DodgerBlue"><span class="w3-hide-small"></span>(Doctors/Nurses)</h5>
+  
+  </header>
+
+  <!-- About Section -->
+
+      <div class="w3-container w3-padding-32 w3-center "style=" background-color:DodgerBlue " id="about">
+   
+ 
+    
+   <h2 class="yolo2"style="color:LightGray">History</h2>
+     <hr style="width:200px" class="w3-opacity">
+    <h3 class="w3-padding-16 w3-text-light-grey"></h3>
+    <p class="w3-wide"style=" color:LightGray">Pressure Data</p>
+     
+                                       
+ <div class="table-data"style=" color:#333399" >
+
+    <table border="1" style=" box-shadow: -5px -5px 5px 5px #333399;">
+        <tr>
+            <th>ID</th>
+            <th>Systolic</th>
+            <th>Diastolic</th>
+            <th>Pulse</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          
+        </tr>
+        
+        <%
+      
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+         <tr>
+         
+            <td><%=data.ID %></td>
+            <td><%=data.Systolic %></td>
+            <td><%=data.Diastolic %></td>
+            <td><%=data.Pulse %></td>
+            <td><%=data.Time %></td>
+            <td><a href="/Person/edit/<%=data.ID%>">Edit</a></td>
+             <td><a href="/Person/delete/<%=data.ID%>">Delete</a></td>
+        
+        </tr>
+         
+       
+        
+          
+     
+        <%  i++; })  %>
+      
+       
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+   
+      </table>
+      
+ </div>
+
+
+ 
+
+ 
+ 
+</div>
+</div>
+<!-- Alerts -->
+ <div class="w3-container w3-padding-64 w3-center"style="background-color:DodgerBlue " id="alerts">
+   
+    
+
+     <h2 class="yolo2"style="color:LightGray"></h2>
+   <h2 class="yolo2"style="color:LightGray">Alerts</h2>
+     <hr style="width:200px" class="w3-opacity">
+       <p></p>
+  <img class="logo w3-wide  w3-center" style="height: 200px; width: 30%; margin-left: 120px; box-shadow: -5px -5px 5px 5px #333399"src="/images/logo1.jpg" alt="Building">
+     
+        <p  class="w3-wide"style=" color:LightGray">Alerts Diastolic</p>                                     
+ <div class="table-data"style=" color:#333399" >
+  
+     
+
+    <table border="1" style=" box-shadow: -5px -5px 5px 5px #333399;">
+        <tr>
+            <th>ID</th>
+            <th>Systolic</th>
+            <th>Diastolic</th>
+            <th>Pulse</th>
+            <th>Date</th>
+             <th>Delete</th>
+        </tr>
+        
+        <%
+      
+        if(userData2.length!=0){
+        var i=1;
+        userData2.forEach(function(data2){
+        %>
+         <tr>
+         
+            <td><%=data2.ID %></td>
+            <td><%=data2.Systolic %></td>
+            <td><%=data2.Diastolic %></td>
+            <td><%=data2.Pulse %></td>
+            <td><%=data2.Time %></td>
+             <td><a href="/Person/delete/<%=data2.ID%>">Delete</a></td>
+        </tr>
+         
+       
+       
+          
+     
+        <%  i++; })  %>
+      
+       
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+   
+      </table>
+      
+ 
+  
+ </div>
+  
+ <div class="table-data"style=" color:#333399" >
+    <p  class="w3-wide w3-center"style=" color:LightGray">Alerts Systolic</p>    
+  
+    <table border="1" style=" box-shadow: -5px -5px 5px 5px #333399;">
+        <tr>
+            <th>ID</th>
+            <th>Systolic</th>
+            <th>Diastolic</th>
+            <th>Pulse</th>
+            <th>Date</th>
+             <th>Delete</th>
+        </tr>
+        
+        <%
+      
+        if(userData3.length!=0){
+        var i=1;
+        userData3.forEach(function(data3){
+        %>
+         <tr>
+         
+            <td><%=data3.ID %></td>
+            <td><%=data3.Systolic %></td>
+            <td><%=data3.Diastolic %></td>
+            <td><%=data3.Pulse %></td>
+            <td><%=data3.Time %></td>
+             <td><a href="/Person/delete/<%=data3.ID%>">Delete</a></td>
+        </tr>
+         
+       
+        
+          
+     
+        <%  i++; })  %>
+      
+       
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+ 
+      </table>
+  </div>
+ 
+
+   
+
+</div>
+
+
+   <!-- Info -->
+  <div  class="w3-container w3-padding-64 w3-center"style="background-color:DodgerBlue " id="photos">
+    <h2 class="yolo3"style="color:LightGray">Info </h2>
+     <hr style="width:200px" class="w3-opacity">
+      <h3 class="w3-padding-16 w3-text-light-grey"></h3>
+    <p class="w3-wide"style="color:LightGray">Pressure Data Limits</p>
+     <div class="table-data"style=" color:DodgerBlue" >
+
+    <table border="1"style=" box-shadow: -5px -5px 5px 5px #333399;">
+   
+  <tr>
+    <th>Blood Pressure Category</th>
+    <th>Systolic (mm Hg)</th>
+    <th></th>
+    <th>Diastolic (mm Hg)</th>
+  </tr>
+  <tr>
+    <td>Normal</td>
+    <td>less than 120</td>
+    <td>and</td>
+    <td>less than 80</td>
+  </tr>
+  <tr>
+     <td>Elevated</td>
+    <td>120-129</td>
+    <td>and</td>
+    <td>less than 80</td>
+  </tr>
+  <tr>
+     <td>High Blood Pressure (Hypertension)Stage1</td>
+    <td>130-139</td>
+    <td>or</td>
+    <td>80-89</td>
+  </tr>
+
+  <tr>
+     <td>High Blood Pressure (Hypertension)Stage2</td>
+    <td>140 or higher</td>
+    <td>or</td>
+    <td>90 or higher</td>
+  </tr>
+   <tr>
+     <td>Hypertensive Crisis (Seek Emergency Care)</td>
+    <td>higher than 180</td>
+    <td>and/or</td>
+    <td>higher than 120</td>
+  </tr>
+ 
+</table>
+       </div>
+</div>
+
+    <!-- end History -->
+    <!-- Chart-->
+    <div id="contact" class="w3-container w3-padding-64 w3-center"style="background-color:DodgerBlue ","height: 159px; width: 30%;">
+     
+    <h2 class="yolo3"style="color:LightGray">Chart </h2>
+     <hr style="width:200px" class="w3-opacity">
+      <h3 class="w3-padding-16 w3-text-light-grey"></h3>
+    <p class="w3-wide"style="color:LightGray"></p>
+     <div id="chartContainer" style="height: 150px; width: 50%; margin-left: 155px; box-shadow: -5px -5px 5px 5px #333399">
+    
+	
+    <script type="text/javascript">
+	window.onload = function () {
+
+      var dps = [{x: 1, y: 122}, {x: 2, y: 132}, {x: 3, y: 145}, {x: 4, y: 131}, {x: 5, y: 170},{x: 6, y: 106}, {x: 7, y: 136}, {x: 8, y: 186}, {x: 9, y: 145}, {x: 10, y: 152}];   //dataPoints. 
+
+      var chart = new CanvasJS.Chart("chartContainer",{
+      	title :{
+      		text: "Chart Data for User's Systolic"
+      	},
+      	axisX: {						
+      		title: "Systolic"
+      	},
+      	axisY: {						
+      		title: "MS"
+      	},
+      	data: [{
+      		type: "line",
+      		dataPoints : dps
+      	}]
+      });
+
+      chart.render();
+      var xVal = dps.length + 1;
+      var yVal = 15;	
+      var updateInterval = 1000;
+
+      var updateChart = function () {
+      	
+      	
+      	yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+      	dps.push({x: xVal,y: yVal});
+      	
+      	xVal++;
+      	if (dps.length >  10 )
+      	{
+      		dps.shift();				
+      	}
+
+      	chart.render();		
+
+	// update chart after specified time. 
+
+};
+
+setInterval(function(){updateChart()}, updateInterval); 
+}
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+  </div>
+
+<!-- end Chart -->
+      <div class="w3-half">
+        
+      </div>
+    <!-- End photo grid -->
+   
+  <!-- End Portfolio Section -->
+
+    <!-- Footer -->
+  <footer>
+   
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+
+</div>
+</body>
+</html>
