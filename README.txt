@@ -3,4 +3,3 @@
 Kάθε προσωρινή μέτρηση αποθηκεύεται στο self_rc.json και κάθε μέτρηση αποθηκεύεται κανονικά και στο MS SQL Server στο TestDB και table= Person
 Πηγαίνοντας στο cmd να δείχνει μέσα στο φάκελο nodeapp, τρέχουμε τον web server με npm start
 Πληκτρολογούμε στο browser: http://localhost:3000/Person/user-list
-*Ο MS SQL server βρίσκεται στο pc και η βάση προς το παρόν υπάρχει εκεί και όχι remote access
