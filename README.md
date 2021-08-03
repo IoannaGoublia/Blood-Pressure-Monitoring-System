@@ -1,5 +1,14 @@
 # Blood-Pressure-Monitoring-System
 
+
+
+
+The project contains a sensor device(simulator) and a web app. The sensor device, 
+which is a simulator (a GUI interface/client + device server) in python, stores the 
+data in the db. App’s server in Nodejs and Express js manage HTTP requests in web 
+app for the visualization of data.
+
+
 BPdevice
 ![dev](https://user-images.githubusercontent.com/87852076/127887233-76335fdb-deb9-470a-9352-e1c9a61860f2.png)
 
